@@ -1,0 +1,164 @@
+\usepackage{ifpdf}
+\usepackage{calc}
+\usepackage{palatino}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{pifont}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage[e]{esvect}
+\usepackage{multicol}
+\usepackage{ulem}
+\usepackage{changepage}
+\usepackage{lastpage}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+
+\oddsidemargin 0.0in
+\evensidemargin 0.0in
+\headheight 0.2in
+\textwidth 6.6in
+\textheight 8.7in
+\topmargin -0.25in
+
+\pagestyle{fancyplain}
+\renewcommand{\plainheadrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\chead{\fancyplain{}{\DOCUMENT\ (cont.)}}
+\rhead{\fancyplain{}{\thepage\ of \pageref{LastPage}}}
+\cfoot{\fancyplain{}{Version \VERSION}}
+
+\fancypagestyle{firststyle}{
+\fancyhf{}
+\fancyfoot[R]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.0pt}
+}
+
+\parindent 0.0in
+\parskip 1ex
+
+\setlength\jot{12pt}
+\setlength{\fboxsep}{10pt}
+
+\newcommand{\tw}{\textwidth}
+
+\newcommand{\AM}  {\mbox{\bf A}\xspace}
+\newcommand{\BM}  {\mbox{\bf B}\xspace}
+\newcommand{\CM}  {\mbox{\bf C}\xspace}
+\newcommand{\DM}  {\mbox{\bf D}\xspace}
+\newcommand{\OM}  {\mbox{\bf O}\xspace}
+\newcommand{\UM}  {\mbox{\bf 1}\xspace}
+\newcommand{\ABM} {\mbox{\bf AB}\xspace}
+\newcommand{\BAM} {\mbox{\bf BA}\xspace}
+\newcommand{\AMI} {\mbox{{\bf A}$^{-1}$}\xspace}
+\newcommand{\LM}  {\mbox{\boldmath$\lambda$}\xspace}
+
+\newcommand{\A}	{\mbox{$\vv{\mathbf A}$}\xspace}
+\newcommand{\B}	{\mbox{$\vv{\mathbf B}$}\xspace}
+\newcommand{\C}	{\mbox{$\vv{\mathbf C}$}\xspace}
+\newcommand{\D} {\mbox{$\vv{\mathbf D}$}\xspace}
+\newcommand{\E} {\mbox{$\vv{\mathbf E}$}\xspace}
+\newcommand{\R}	{\mbox{$\vv{\mathbf R}$}\xspace}
+\renewcommand{\O}	{\mbox{$\mathbf{O}$}\xspace}
+\renewcommand{\v}	{\mbox{$\vv{\mathbf{v}}$}\xspace}
+\newcommand{\s}    {\mbox{$\mathbf{s}$}\xspace}
+\newcommand{\n}    {\mbox{$\mathbf{n}$}\xspace}
+\newcommand{\x}   {\mbox{$\vv{\mathbf x}$}\xspace}
+\newcommand{\g}   {\mbox{$\vv{\mathbf g}$}\xspace}
+\newcommand{\F}   {\mbox{$\vv{\mathbf F}$}\xspace}
+\renewcommand{\L}    {\mbox{$\vv{\mathbf L}$}\xspace}
+\newcommand{\tauv}  {\mbox{\boldmath$\vv{\tau}$}\xspace}
+\newcommand{\p}	{\mbox{$\vv{\mathbf p}$}\xspace}
+\renewcommand{\r}	{\mbox{$\vv{\mathbf r}$}\xspace}
+\renewcommand{\a}  {\mbox{$\vv{\mathbf a}$}\xspace}
+\newcommand{\w}  {\mbox{$\vv{\mathbf w}$}\xspace}
+\newcommand{\Svec}  {\mbox{$\vv{\mathbf S}$}\xspace}
+\newcommand{\W}  {\mbox{$\vv{\mathbf W}$}\xspace}
+\newcommand{\del}  {\mbox{\boldmath$\nabla$}\xspace}
+\newcommand{\ov}   {\mbox{\boldmath $\vv{\omega}$}\xspace}
+\newcommand{\vdot} {\mbox{$\mathbf{\dot{v}}$}\xspace}
+\newcommand{\rdot} {\mbox{$\mathbf{\dot{r}}$}\xspace}
+\newcommand{\rddot} {\mbox{$\mathbf{\ddot{r}}$}\xspace}
+
+\newcommand{\X} {\mbox{$X$}\xspace}
+\newcommand{\Y} {\mbox{$Y$}\xspace}
+\newcommand{\Z} {\mbox{$Z$}\xspace}
+
+\newcommand{\e} {\mbox{$\mathbf{e}$}\xspace}
+\newcommand{\ex} {\mbox{$\mathbf{e_x}$}\xspace}
+\newcommand{\ey} {\mbox{$\mathbf{e_y}$}\xspace}
+\newcommand{\ez} {\mbox{$\mathbf{e_z}$}\xspace}
+\newcommand{\ea} {\mbox{$\mathbf{e_A}$}\xspace}
+\newcommand{\etheta} {\mbox{$\mathbf{e_\theta}$}\xspace}
+\newcommand{\er} {\mbox{$\mathbf{e}_r$}\xspace}
+
+\newcommand{\ihat} {\mbox{$\mathbf{\hat{i}}$}\xspace}
+\newcommand{\jhat} {\mbox{$\mathbf{\hat{j}}$}\xspace}
+\newcommand{\khat} {\mbox{$\mathbf{\hat{k}}$}\xspace}
+\newcommand{\xhat} {\mbox{$\mathbf{\hat{x}}$}\xspace}
+\newcommand{\yhat} {\mbox{$\mathbf{\hat{y}}$}\xspace}
+\newcommand{\zhat} {\mbox{$\mathbf{\hat{z}}$}\xspace}
+
+\renewcommand{\i} {\mbox{$\mathbf{\i}$}\xspace}
+\renewcommand{\j} {\mbox{$\mathbf{\j}$}\xspace}
+\renewcommand{\k} {\mbox{$\mathbf{k}$}\xspace}
+
+\renewcommand{\deg}{\mbox{$^\circ$}\xspace}
+\newcommand{\degc}{\mbox{$^\circ$}C\xspace}
+\newcommand{\cdeg}{\mbox{ C$^\circ$}\xspace}
+\newcommand{\degf}{\mbox{$^\circ$}F\xspace}
+\newcommand{\fdeg}{\mbox{ F$^\circ$}\xspace}
+
+\newcommand{\smone}{\mbox{s$^{-1}$}\xspace}
+\newcommand{\smtwo}{\mbox{s$^{-2}$}\xspace}
+\newcommand{\smthree}{\mbox{s$^{-3}$}\xspace}
+\newcommand{\smfour}{\mbox{s$^{-4}$}\xspace}
+
+\newcommand{\BV} {\BlueViolet}
+\newcommand{\OG} {\OliveGreen}
+
+\newcommand{\points}[1]{ (#1~points)}
+\newcommand{\point}[1]{ (#1~point)}
+
+\newcommand{\kd} {\mbox{$\delta_{ik}$}\xspace}
+\newcommand{\emf}{\mbox{${\mathcal E}$}\xspace}
+
+\newcommand{\lw}{\linewidth}
+
+\newenvironment{blist}[1]%
+  {\begin{list}{}{\renewcommand{\makelabel}[1]{\textbf{##1}\hfil}%
+    \settowidth{\labelwidth}{\textbf{#1}}%
+    \setlength{\leftmargin}{\labelwidth+\labelsep}}}%
+  {\end{list}}
+
+\newenvironment{nlist}[1]%
+ {\begin{list}{}{\renewcommand{\makelabel}[1]{\textrm{##1}\hfil}%
+    \settowidth{\labelwidth}{\textrm{#1}}%
+    \setlength{\leftmargin}{\labelwidth+\labelsep}}}%
+  {\end{list}}
+  
+\newenvironment{dlist}%
+  {\begin{enumerate}[label=\ding{\value*},start=192,itemsep=3ex,labelsep=*,leftmargin=4ex]}%
+  {\end{enumerate}}
+   
+\newenvironment{subpart}[1][1]%
+  {\begin{enumerate}[label=(\alph*),align=parleft,itemsep=0.5ex,widest=a,start=#1]}%
+  {\end{enumerate}}
+
+\newenvironment{choices}%
+  {\begin{enumerate}[label=\Alph*.,align=parleft,itemsep=0.1ex,widest=a]\small}%
+  {\end{enumerate}}
+  
+\newenvironment{MP}{\begin{minipage}[t]{.45\lw}}{\end{minipage}}
+
+\newenvironment{Ventry}[1]%
+  {\begin{list}{}{\renewcommand{\makelabel}[1]{\textbf{##1}\hfil}%
+    \settowidth{\labelwidth}{\textbf{#1}}%
+    \setlength{\leftmargin}{\labelwidth+\labelsep}}}%
+  {\end{list}}
+
+\setenumerate{leftmargin=*,labelsep=*,widest=18,itemsep=2ex}
+
