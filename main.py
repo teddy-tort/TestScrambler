@@ -1,4 +1,4 @@
-from load_file import load
+from load_tex import load
 
 
 
