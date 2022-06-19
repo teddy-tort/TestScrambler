@@ -1,8 +1,8 @@
 import os
 from load_tex import Primer
-import pylatex
 
 
+unique_exam_number = 20
 working_directory = "D:\\GitHub\\TestWriter\\tex_files"
 tex_file_primer = "exam_prime.tex"
 
@@ -82,5 +82,5 @@ def make_tex_files(number_of_students: int):
 if __name__ == "__main__":
     import time
     start = time.time()
-    make_tex_files(300)
+    make_tex_files(unique_exam_number)
     print(time.time()-start)
