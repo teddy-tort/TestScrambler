@@ -29,65 +29,63 @@ class Question:
         return list_to_return
 
 
-def open_tex(file):
-    with open(file, 'r') as f:
-        text = f.read()
-    lines = text.split('\n')
-    return lines
+class Primer:
+    def __init__(self, filename):
+        with open(filename, 'r') as f:
+            text = f.read()
+        self.lines = text.split('\n')
+        self.q_start_ind = self.lines.index("\\begin{enumerate}") + 1
+        self.q_end_ind = self.lines.index("\\end{enumerate}")
+        self.header = self.lines[0:self.q_start_ind]
+        self.header.extend(['', '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', ''])
+        self.footer = ['', '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', '']
+        self.footer.extend(self.lines[self.q_end_ind:])
 
+        self.q_num = self.find_number_of_questions()
 
-def get_questions(lines):
-    questions = []
-    q_on = False
-    question = ''
-    answers = []
-    q_pos = 0
-    a_pos = []
-    start = False
-    for ii, line in enumerate(lines):
-        if "\\begin{enumerate}" in line:
-            start = True
-        elif "\\end{enumerate}" in line:
-            start = False
-        if start:
+    def find_number_of_questions(self) -> int:
+        q_lines = self.lines[self.q_start_ind:self.q_end_ind]
+        q_num = 0
+        on_q = False
+        for line in q_lines:
+            if not on_q and "\\item" in line:
+                on_q = True
+                q_num += 1
+            if on_q and line == "":
+                on_q = False
+        return q_num
+
+    def gen_questions(self) -> list:
+        questions = [None] * self.q_num
+        on_q = False
+        answers = []
+        a_pos = []
+        q_num = 0
+        for ii, line in enumerate(self.lines[self.q_start_ind:self.q_end_ind]):
             if "\\item" in line:
-                if not q_on:
-                    q_pos = ii
-                    question = line
-                else:
-                    a_pos.append(ii)
+                if on_q:
+                    a_pos.append(ii + self.q_start_ind)
                     answers.append(line)
+                else:
+                    q_pos = ii + self.q_start_ind
+                    question = line
             if "\\begin{choices}" in line:
-                q_on = True
+                on_q = True
                 a_pos = []
                 answers = []
-            elif not line and q_on:
-                q_on = False
-                questions.append(Question(question, answers, q_pos, a_pos, ii - q_pos))
-    return questions
+            elif not line and on_q:
+                on_q = False
+                questions[q_num] = Question(question, answers, q_pos, a_pos, ii + self.q_start_ind - q_pos)
+                q_num += 1
+        return questions
 
-
-def scramble_questions(questions: list) -> (list, int):
-    q_key = p8.random()
-    scrambled_questions = p8.scramble(q_key, questions)
-    return scrambled_questions, q_key
-
-
-def load(latex_file: str) -> (list, str):
-    lines = open_tex(latex_file)
-    question_list = get_questions(lines)
-    a_keys = ''
-    for q in question_list:
-        a_keys += hex(q.key).lstrip('0')
-    scrambled_q, q_key = scramble_questions(question_list)
-    return scrambled_q, hex(q_key).lstrip('0') + a_keys
+    def scramble(self, questions: list) -> (list, int):
+        q_key = p8.random()
+        scrambled_questions = p8.scramble(q_key, questions)
+        return scrambled_questions, q_key
 
 
 if __name__ == "__main__":
     file = "tex_files\\exam_prime.tex"
-    questions, _ = load(file)
-    print(len(questions))
-    for ii, q in enumerate(questions):
-        print(f"{q.q_pos}: {q.problem_statement}")
-    print(questions[0].length)
-    print(questions[1].length)
+    prime = Primer(file)
+    print(prime.gen_questions()[-1].problem_statement)
