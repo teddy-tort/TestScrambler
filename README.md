@@ -21,6 +21,9 @@ Run main_gen.py (double click file from file explorer, "python main_gen.py" in c
 numpy: https://numpy.org/doc/stable/
 
 Built In:
+
 random: https://docs.python.org/3/library/random.html
+
 itertools: https://docs.python.org/3/library/itertools.html
+
 os: https://docs.python.org/3/library/os.html
